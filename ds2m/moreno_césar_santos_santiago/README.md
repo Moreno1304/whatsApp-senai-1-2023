@@ -2,7 +2,7 @@
 
 |      MOBILE         |          DESKTOP       |
 |:-------------------:|:-----------------------:
-|![](./img/mobile2.png)|![](./img/desktopp.png)|
+|![](./img/zapzap.png)|![](./img/desktopp.png)|
 |                     |                        |
 
 
