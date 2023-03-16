@@ -1,12 +1,14 @@
 'use strict'
 
-import { contatos } from "./contatos.js"
+import { contatos } from "https://fernandoleonid.github.io/whatsApp-senai-1-2023/recursos/contatos.js"
 
-const criarContato = (contato) => {
+const criarContato = (contato, indice) => {
 
     const contatos = document.createElement('div')
     contatos.classList.add('contato')
-
+    contatos.id = 'contato'
+    contatos.onclick = () => carregarConversas(indice)
+    
     const img = document.createElement('img')
     img.classList.add('fotos-perfil')
     img.src = `./${contato.image}`
@@ -45,4 +47,37 @@ const carregarContatos = () => {
     const contatosContainer = contatos.map(criarContato)
     novoContainer.replaceChildren(...contatosContainer)
 }
+
+const getConversas = (mensagem) => {
+
+    let messageSent = document.createElement('p')
+    let br = document.createElement('br')
+    let time = document.createElement('span')
+
+    if (mensagem.sender == "me") {
+        messageSent.classList.add('minha-mensagem')
+        time.classList.add('tempo')
+        messageSent.textContent = mensagem.content
+        time.textContent = mensagem.time
+
+    } else {
+        messageSent.classList.add('mensagem-contatos')
+        time.classList.add('time')
+        messageSent.textContent = mensagem.content
+        time.textContent = mensagem.time
+    }
+
+    messageSent.append(br,time)
+
+    return messageSent
+}
+
+const carregarConversas = (indice) => {
+    const messageContact = document.getElementById('container-mensagens')
+
+    const message = contatos[indice].messages.map(getConversas)
+
+    messageContact.replaceChildren(...message)
+}
+
 carregarContatos()
